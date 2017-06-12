@@ -11,7 +11,7 @@ CRI-O supports OCI container images and can pull from any container registry. It
 It is developed by maintainers and contributors from Red Hat, Intel, SUSE, Hyper, IBM and others.  We are a fully open project and contributors are always welcome:
 https://github.com/kubernetes-incubator/cri-o
 
-<script type="text/javascript" src="https://asciinema.org/a/al01ze6jxhpphikxla3qt2m6s.js" id="asciicast-al01ze6jxhpphikxla3qt2m6s" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/124131.js" id="asciicast-124131" async></script>
 
 ## Features and Benefits
 
