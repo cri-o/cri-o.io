@@ -21,7 +21,7 @@ https://github.com/kubernetes-incubator/cri-o
 
 ## Architecture
 
-TBA diagram
+![CRI-O architecture](assets/images/architecture.png)
 
 ## FAQ
 
