@@ -1,5 +1,5 @@
 title: cri-o
-description: Open Container Initiative-based implementation of Kubernetes Container Runtime Interface
+description: Lightweight Container Runtime for Kubernetes
 show_downloads: true
 google_analytics:
 theme:
