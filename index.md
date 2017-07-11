@@ -23,7 +23,7 @@ layout: default
 
 Join #cri-o on IRC (freenode)
 
-### Look, Ma! No docker!
+### CRI-O Running Kubernetes Pods
 
 <script type="text/javascript" src="https://asciinema.org/a/124131.js" id="asciicast-124131" async></script>
 
@@ -64,7 +64,14 @@ The architectural components are as follows:
 
 ## Components
 
-CRI-O is made up of several components that are found in different GitHub repositories.  
+CRI-O is made up of several components that are found in different GitHub repositories.
+
+* [OCI compatible runtime](https://github.com/opencontainers/runtime-tools)
+* [containers/storage](https://github.com/containers/storage)
+* [containers/image](https://github.com/containers/image)
+* [networking (CNI)](https://github.com/containernetworking/cni)
+* [container monitoring (conmon)](https://github.com/kubernetes-incubator/cri-o/tree/master/conmon)
+* security is provided by several core Linux capabilities
 
 ### OCI compatible runtimes
 
@@ -101,7 +108,6 @@ situations.
 Container security separation policies are provided by a series of tools including SELinux, Capabilities, seccomp,
 and other security separation policies as specified in the OCI Specification.
 
-<!--
+
 <a class="twitter-timeline"  href="https://twitter.com/hashtag/%22cri-o%22" data-widget-id="862337196434632704">#"cri-o" Tweets</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
--->
