@@ -2,26 +2,53 @@
 layout: default
 ---
 
-## What is cri-o?
+{:.features}
+* **Designed**: Optimized for Kubernetes
+* **Stable**: Committed to passing Kubernetes tests
+* **Any Image from Any Registry**: pull from *any* [compliant registry](#container-images); run *any* [OCI-compliant container](#oci-compatible-runtimes)
 
-CRI-O is an implementation of the kubernetes CRI (Container Runtime Interface) to enable using
-OCI (Open Container Initiative) compatible runtimes. It allows Kubernetes to use any OCI compliant
-runtime as the container runtime for running pods. Today it supports runc and Clear Containers
-as the container runtimes but any OCI conformant runtime can be plugged in principle.
+## Try Now
 
-CRI-O supports OCI container images and can pull from any container registry.
-It is a lightweight alternative to using Docker or rkt as the runtime for kubernetes.
+* Using `kubeadm`: Follow [cri-o Ansible](https://github.com/cri-o/cri-o-ansible) installation
+* **Minikube** integration in progress
 
-It is developed by maintainers and contributors from Red Hat, Intel, SUSE, Hyper, IBM and others.
-We are a fully open project and contributors are always welcome: [kubernetes-incubator/cri-o](https://github.com/kubernetes-incubator/cri-o).
+### Distribution Packaging
+
+* **Fedora**: Available on Fedora 25, 26 and Rawhide
+
+    dnf install cri-o
+* **Ubuntu**: Available as a [PPA](https://launchpad.net/~projectatomic/+archive/ubuntu/ppa)
+* **RHEL7**: Soon
+* **Centos**: Soon
+
+Join #cri-o on IRC (freenode)
+
+### Look, Ma! No docker!
 
 <script type="text/javascript" src="https://asciinema.org/a/124131.js" id="asciicast-124131" async></script>
 
-## Features and Benefits
+## What is CRI-O?
 
-* Optimized architecture for Kubernetes through less daemon overhead(?)
-* Composable library
-* Stable release roadmap
+CRI-O is an implementation of the Kubernetes CRI (Container Runtime Interface) to enable using
+OCI (Open Container Initiative) compatible runtimes.
+It is a lightweight alternative to using Docker as the runtime for kubernetes.
+It allows Kubernetes to use any OCI-compliant
+runtime as the container runtime for running pods. Today it supports runc and Clear Containers
+as the container runtimes but any OCI-conformant runtime can be plugged in principle.
+
+CRI-O supports OCI container images and can pull from any container registry.
+It is a lightweight alternative to using Docker, Moby or rkt as the runtime for Kubernetes.
+
+## Contributors
+
+CRI-O is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome at the [kubernetes-incubator/cri-o](https://github.com/kubernetes-incubator/cri-o) project. CRI-O is developed by maintainers and contributors from these companies and others.
+
+{:.contributors}
+* {:.contributor} Red Hat
+* {:.contributor} Intel
+* {:.contributor} SUSE
+* {:.contributor} Hyper
+* {:.contributor} IBM
 
 ## Architecture
 
@@ -35,8 +62,9 @@ The architectural components are as follows:
 - The CRI Image API is implemented using the `containers/image` library.
 - Networking for the pod is setup through use of [CNI](https://github.com/containernetworking/cni), so any CNI plugin can be used with CRI-O.
 
-CRI-O is made up of several components that are found in different GitHub repositories.
-Let’s take a look at the components.  
+## Components
+
+CRI-O is made up of several components that are found in different GitHub repositories.  
 
 ### OCI compatible runtimes
 
@@ -45,15 +73,15 @@ We test with runc and Clear Containers today.
 
 ### Storage
 
-The [containers/storage](https://github.com/containers/storage) lib is used for managing layers
+The [containers/storage](https://github.com/containers/storage) library is used for managing layers
 and creating root file-systems for the containers in a pod: `Overlayfs`, `devicemapper`, `AUFS` and `btrfs`
 are implemented, with `Overlayfs` as the default driver.
 
-There is also support for network based file system images (NFS, Gluster, Cefs) on the way.
+Support for network based file system images (NFS, Gluster, Cefs) is on the development roadmap.
 
 ### Container images
 
-The [containers/image](https://github.com/containers/image) lib is used for pulling images from registries.
+The [containers/image](https://github.com/containers/image) library is used for pulling images from registries.
 Currently, it supports Docker [schema 2/version 1](https://docs.docker.com/registry/spec/manifest-v2-1/)
 as well as [schema 2/version 2](https://docs.docker.com/registry/spec/manifest-v2-2/).
 It also passes all Docker and Kubernetes tests.
@@ -73,19 +101,7 @@ situations.
 Container security separation policies are provided by a series of tools including SELinux, Capabilities, seccomp,
 and other security separation policies as specified in the OCI Specification.
 
-## FAQ
-
-TBA
-
-**Feature roadmap**
-
-1. Basic pod/container lifecycle, basic image pull (already works)
-1. Support for tty handling and state management
-1. Basic integration with kubelet once client side changes are ready
-1. Support for log management, networking integration using CNI, pluggable image/storage management
-1. Support for exec/attach
-1. Target fully automated kubernetes testing without failures
-
-
+<!--
 <a class="twitter-timeline"  href="https://twitter.com/hashtag/%22cri-o%22" data-widget-id="862337196434632704">#"cri-o" Tweets</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+-->
