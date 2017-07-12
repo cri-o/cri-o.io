@@ -219,6 +219,10 @@ a {
     }
   }
 
+  .center {
+    text-align: center;
+  }
+
   .highlight {
     margin-bottom: 1rem;
 
@@ -345,4 +349,36 @@ a {
 
 .site-footer-credits {
   color: $blockquote-text-color;
+}
+
+.contributors {
+  list-style-type: none;
+}
+
+.contributor {
+  display: inline;
+  text-align: center;
+  margin: 10px;
+  padding: 20px;
+}
+
+.features {
+  list-style-type: none;
+}
+
+.feature {
+  display: inline-block;
+  width: 30%;
+  height: 10em;
+  background-color: #dae0ed;
+  color: #294172;
+  padding: 1em;
+  margin: .5em;
+  vertical-align: top;
+  text-align: center;
+}
+
+li.feature strong::after {
+  content: '';
+  display: block;
 }
