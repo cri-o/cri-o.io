@@ -3,9 +3,9 @@ layout: default
 ---
 
 {:.features}
-* **Designed**: Optimized for Kubernetes
-* **Stable**: Committed to passing Kubernetes tests
-* **Any Image from Any Registry**: pull from *any* [compliant registry](#container-images); run *any* [OCI-compliant container](#oci-compatible-runtimes)
+* {:.feature} **Designed** Optimized for Kubernetes
+* {:.feature} **Stable** Committed to passing Kubernetes tests
+* {:.feature} **Any Image, Any Registry** pull from *any* [compliant registry](#container-images); run *any* [OCI-compliant container](#oci-compatible-runtimes)
 
 ## Try Now
 
@@ -16,7 +16,7 @@ layout: default
 
 * **Fedora**: Available on Fedora 25, 26 and Rawhide
 
-    dnf install cri-o
+        dnf install cri-o
 * **Ubuntu**: Available as a [PPA](https://launchpad.net/~projectatomic/+archive/ubuntu/ppa)
 * **RHEL7**: Soon
 * **Centos**: Soon
@@ -44,11 +44,11 @@ It is a lightweight alternative to using Docker, Moby or rkt as the runtime for 
 CRI-O is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome at the [kubernetes-incubator/cri-o](https://github.com/kubernetes-incubator/cri-o) project. CRI-O is developed by maintainers and contributors from these companies and others.
 
 {:.contributors}
-* {:.contributor} Red Hat
-* {:.contributor} Intel
-* {:.contributor} SUSE
-* {:.contributor} Hyper
-* {:.contributor} IBM
+* {:.contributor highlight} Red Hat
+* {:.contributor highlight} Intel
+* {:.contributor highlight} SUSE
+* {:.contributor highlight} Hyper
+* {:.contributor highlight} IBM
 
 ## Architecture
 
