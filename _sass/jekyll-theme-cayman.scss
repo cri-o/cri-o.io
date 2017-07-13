@@ -353,13 +353,16 @@ a {
 
 .contributors {
   list-style-type: none;
+  margin-top: 2em;
 }
 
 .contributor {
   display: inline;
   text-align: center;
-  margin: 10px;
-  padding: 20px;
+  margin: 0;
+  padding: 2% 6%;
+  border: 2px solid $header-bg-color-secondary;
+  color: $header-bg-color-secondary;
 }
 
 .features {
@@ -370,10 +373,10 @@ a {
   display: inline-block;
   width: 30%;
   height: 10em;
-  background-color: #dae0ed;
-  color: #294172;
+  background-color: $header-bg-color;
+  color: $section-headings-color;
   padding: 1em;
-  margin: .5em;
+  margin: 0 .5em;
   vertical-align: top;
   text-align: center;
 }

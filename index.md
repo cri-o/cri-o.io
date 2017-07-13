@@ -12,6 +12,8 @@ layout: default
 * Using `kubeadm`: Follow [cri-o Ansible](https://github.com/cri-o/cri-o-ansible) installation
 * **Minikube** integration in progress
 
+Join #cri-o on IRC (freenode)
+
 ### Distribution Packaging
 
 * **Fedora**: Available on Fedora 25, 26 and Rawhide
@@ -20,8 +22,6 @@ layout: default
 * **Ubuntu**: Available as a [PPA](https://launchpad.net/~projectatomic/+archive/ubuntu/ppa)
 * **RHEL7**: Soon
 * **Centos**: Soon
-
-Join #cri-o on IRC (freenode)
 
 ### CRI-O Running Kubernetes Pods
 
@@ -41,14 +41,15 @@ It is a lightweight alternative to using Docker, Moby or rkt as the runtime for 
 
 ## Contributors
 
-CRI-O is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome at the [kubernetes-incubator/cri-o](https://github.com/kubernetes-incubator/cri-o) project. CRI-O is developed by maintainers and contributors from these companies and others.
-
 {:.contributors}
-* {:.contributor highlight} Red Hat
-* {:.contributor highlight} Intel
-* {:.contributor highlight} SUSE
-* {:.contributor highlight} Hyper
-* {:.contributor highlight} IBM
+* {:.contributor} Red Hat
+* {:.contributor} Intel
+* {:.contributor} SUSE
+* {:.contributor} Hyper
+* {:.contributor} IBM
+
+CRI-O is developed by maintainers and contributors from these companies and others.
+It is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome at the [kubernetes-incubator/cri-o](https://github.com/kubernetes-incubator/cri-o) project.
 
 ## Architecture
 
