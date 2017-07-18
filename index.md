@@ -23,6 +23,17 @@ Join #cri-o on IRC (freenode)
 * **RHEL7**: Soon
 * **Centos**: Soon
 
+#### System Container
+
+* **Fedora and Fedora Atomic Host**: Soon
+
+* **Centos and Centos Atomic Host**: Available 7.4+
+
+        atomic install --system-package=no -n cri-o --storage ostree registry.centos.org/projectatomic/cri-o:latest
+
+* **RHEL**: Soon
+
+
 ### CRI-O Running Kubernetes Pods
 
 <script type="text/javascript" src="https://asciinema.org/a/124131.js" id="asciicast-124131" async></script>
