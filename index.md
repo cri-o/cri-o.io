@@ -3,9 +3,9 @@ layout: default
 ---
 
 {:.features}
-* {:.feature} **Designed** Optimized for Kubernetes
-* {:.feature} **Stable** Committed to passing Kubernetes tests
-* {:.feature} **Any Image, Any Registry** pull from *any* [compliant registry](#container-images); run *any* [OCI-compliant container](#oci-compatible-runtimes)
+* {:.feature} ![](assets/images/features-designed.svg) **Designed** Optimized for Kubernetes
+* {:.feature} ![](assets/images/features-stable.svg) **Stable** Committed to passing Kubernetes tests
+* {:.feature} ![](assets/images/features-any.svg) **Any Image, Any Registry** Pull from *any* [compliant registry](#container-images); run *any* [OCI-compliant container](#oci-compatible-runtimes)
 
 ## Try Now
 
@@ -18,7 +18,7 @@ Join #cri-o on IRC (freenode)
 
 * **Fedora**: Available on Fedora 25, 26 and Rawhide
 
-        dnf install cri-o
+      dnf install cri-o
 * **Ubuntu**: Available as a [PPA](https://launchpad.net/~projectatomic/+archive/ubuntu/ppa)
 * **RHEL7**: Soon
 * **Centos**: Soon
@@ -26,11 +26,9 @@ Join #cri-o on IRC (freenode)
 #### System Container
 
 * **Fedora and Fedora Atomic Host**: Soon
-
 * **Centos and Centos Atomic Host**: Available 7.4+
 
-        atomic install --system-package=no -n cri-o --storage ostree registry.centos.org/projectatomic/cri-o:latest
-
+      atomic install --system-package=no -n cri-o --storage ostree registry.centos.org/projectatomic/cri-o:latest
 * **RHEL**: Soon
 
 
