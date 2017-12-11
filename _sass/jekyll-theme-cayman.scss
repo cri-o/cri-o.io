@@ -20,6 +20,18 @@
   }
 }
 
+@mixin sr-only {
+  border: 0;
+  clip-path: inset(50%);
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -28,7 +40,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 0.875rem;
   line-height: 1.5;
   color: $body-text-color;
 }
@@ -42,105 +54,88 @@ a {
   }
 }
 
-.btn {
-  display: inline-block;
-  margin-top: 2em;
-  margin-bottom: 1rem;
-  color: $section-headings-color;
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 0.3rem;
-  transition: color 0.2s, background-color 0.2s, border-color 0.2s;
+.page-header {
+  background-color: $header-bg-color;
+  text-align: center;
+}
 
-  &:hover {
-    color: $body-link-color;
-    text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.3);
-  }
+.page-header-content {
+  margin: 0 auto;
+  max-width: 64rem;
+  padding: 1rem;
+  position: relative;
+}
 
-  + .btn {
-    margin-left: 1rem;
-  }
+.project-blog {
+  background: $header-heading-color;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-size: 0.6875rem;
+  margin: 0;
+  position: absolute;
+  right: 1em;
+  text-transform: uppercase;
+  top: 0;
 
   @include large {
-    padding: 0.75rem 1rem;
+    right: 6rem;
   }
 
   @include medium {
-    padding: 0.6rem 0.9rem;
-    font-size: 0.9rem;
+    right: 4rem;
   }
 
-  @include small {
-    display: block;
-    width: 100%;
-    padding: 0.75rem;
-    font-size: 0.9rem;
+  &:hover {
+    background: darken($header-heading-color, 5%);
+  }
 
-    + .btn {
-      margin-top: 1rem;
-      margin-left: 0;
+  a {
+    color: #fff;
+    display: block;
+    padding: 3px 6px;
+
+
+    &:hover {
+      text-decoration: none;
     }
   }
 }
 
-.page-header {
-  color: $header-heading-color;
-  text-align: center;
-  background-color: $header-bg-color;
-  background-image: url("../../logo/crio-logo.png");
-  background-repeat: no-repeat;
-  background-position: center 1em;
-
-  @include large {
-    padding: 5rem 6rem 2rem 6rem;
-  }
-
-  @include medium {
-    padding: 3rem 4rem;
-  }
-
-  @include small {
-    padding: 2rem 1rem;
-  }
-}
-
 .project-name {
-  margin-top: 0;
-  margin-bottom: 0.1rem;
+  background-image: url("../../logo/crio-logo.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 130px;
+  margin: 0;
 
   @include large {
-    font-size: 3.25rem;
+    height: 190px;
   }
 
   @include medium {
-    font-size: 2.25rem;
+    height: 160px;
   }
 
-  @include small {
-    font-size: 1.75rem;
+  span {
+    @include sr-only();
   }
 }
 
 .project-tagline {
-  margin-bottom: -1rem;
-  font-weight: normal;
-  opacity: 0.7;
-  margin-top: 100px;
+  color: $header-heading-color;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  margin: 0;
+  padding: 5px 10px 25px;
+  text-transform: uppercase;
 
   @include large {
-    font-size: 1.25rem;
+    font-size: 1.1875rem;
   }
 
   @include medium {
-    font-size: 1.15rem;
-  }
-
-  @include small {
-    font-size: 1rem;
+    font-size: 1.0625rem;
   }
 }
 
@@ -155,17 +150,14 @@ a {
     max-width: 64rem;
     padding: 2rem 6rem;
     margin: 0 auto;
-    font-size: 1.1rem;
   }
 
   @include medium {
     padding: 2rem 4rem;
-    font-size: 1.1rem;
   }
 
   @include small {
     padding: 2rem 1rem;
-    font-size: 1rem;
   }
 
   img {
@@ -178,10 +170,10 @@ a {
   h4,
   h5,
   h6 {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-weight: normal;
     color: $section-headings-color;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
   }
 
   p {
@@ -189,75 +181,33 @@ a {
   }
 
   code {
-    padding: 2px 4px;
-    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    font-size: 0.9rem;
-    color: $code-text-color;
-    background-color: $code-bg-color;
-    border-radius: 0.3rem;
-  }
-
-  pre {
-    padding: 0.8rem;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
-    color: $code-text-color;
-    word-wrap: normal;
     background-color: $code-bg-color;
     border: solid 1px $border-color;
-    border-radius: 0.3rem;
+    border-radius: 3px;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.8125rem;
+    padding: 1px 4px;
+  }
+
+  pre {
+    background-color: $code-bg-color;
+    border-radius: 3px;
+    border: solid 1px $border-color;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-size: 0.8125rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 6px 10px;
+    word-wrap: normal;
 
     > code {
-      padding: 0;
-      margin: 0;
-      font-size: 0.9rem;
-      color: $code-text-color;
-      word-break: normal;
-      white-space: pre;
       background: transparent;
       border: 0;
-    }
-  }
-
-  .center {
-    text-align: center;
-  }
-
-  .highlight {
-    margin-bottom: 1rem;
-
-    pre {
-      margin-bottom: 0;
+      padding: 0;
+      white-space: pre;
       word-break: normal;
-    }
-  }
-
-  .highlight pre,
-  pre {
-    padding: 0.8rem;
-    overflow: auto;
-    font-size: 0.9rem;
-    line-height: 1.45;
-    border-radius: 0.3rem;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  pre code,
-  pre tt {
-    display: inline;
-    max-width: initial;
-    padding: 0;
-    margin: 0;
-    overflow: initial;
-    line-height: inherit;
-    word-wrap: normal;
-    background-color: transparent;
-    border: 0;
-
-    &:before,
-    &:after {
-      content: normal;
     }
   }
 
@@ -326,66 +276,90 @@ a {
 }
 
 .site-footer {
-  padding-top: 2rem;
-  margin-top: 2rem;
   border-top: solid 1px $hr-border-color;
-
-  @include large {
-    font-size: 1rem;
-  }
-
-  @include medium {
-    font-size: 1rem;
-  }
-
-  @include small {
-    font-size: 0.9rem;
-  }
-}
-
-.site-footer-owner {
-  display: block;
-  font-weight: bold;
+  margin-top: 2rem;
+  padding-top: 0.5rem;
 }
 
 .site-footer-credits {
-  color: $blockquote-text-color;
+  font-size: 0.6875rem;
 }
 
 .contributors {
-  list-style-type: none;
-  margin: 2em 0;
+  display: flex;
+  list-style: none;
+  margin: 0 -5px;
   padding: 0;
   text-align: center;
 }
 
 .contributor {
-  display: inline-block;
-  text-align: center;
-  margin-bottom: 2%;
-  padding: 2% 6%;
-  border: 2px solid $header-bg-color-secondary;
-  color: $header-bg-color-secondary;
+  border: 1px solid $header-heading-color;
+  flex: 1 0 auto;
+  font-weight: 700;
+  margin: 0 5px 0;
+  padding: 20px 0;
 }
 
 .features {
+  border-bottom: 1px solid $hr-border-color;
   list-style-type: none;
-  text-align: center;
+  margin: 0;
+  padding: 0 0 20px 5px;
+
+  @media(min-width: #{$medium-breakpoint}) {
+    display: flex;
+    margin: 0 -10px;
+    padding: 20px 0 30px;
+    text-align: center;
+  }
 }
 
 .feature {
-  display: inline-block;
-  width: 10em;
-  height: 220px;
-  background-color: $header-bg-color;
-  color: $section-headings-color;
-  padding: 1em;
-  margin: 0 .5em 2em 0;
-  vertical-align: top;
-  text-align: center;
-}
+  clear: left;
+  font-size: 0.8125rem;
+  margin: 0;
+  padding: 0 0 20px;
 
-li.feature strong::after {
-  content: '';
-  display: block;
+  @media(min-width: #{$medium-breakpoint}) {
+    flex: 1 1 33.333333%;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  img {
+    float: left;
+    margin: 0 15px 40px 0;
+    max-width: 48px;
+
+    @media(min-width: #{$medium-breakpoint}) {
+      float: none;
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 60px;
+    }
+
+    @media(min-width: #{$large-breakpoint}) {
+      max-width: 70px;
+    }
+  }
+
+  strong {
+    color: $section-headings-color;
+    display: block;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+
+    @media(min-width: #{$medium-breakpoint}) {
+      font-size: 1.125rem;
+      margin-bottom: 10px;
+      white-space: nowrap;
+    }
+
+    @media(min-width: #{$large-breakpoint}) {
+      font-size: 1.1875rem;
+    }
+  }
 }
