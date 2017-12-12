@@ -9,19 +9,19 @@ layout: default
 
 ## Try Now
 
-* Using `kubeadm`: Follow [cri-o Ansible](https://github.com/cri-o/cri-o-ansible) installation
-* **Minikube** integration in progress
+* Using `kubeadm`: Use a [systemd drop-in](https://kubernetes.io/docs/reference/generated/kubeadm/#kubelet-drop-in) to configure the CRI-O socket via `--container-runtime-endpoint /var/run/crio/crio.sock"`
+* **Minikube**: Use [CRI-O](https://github.com/kubernetes/minikube/blob/master/docs/alternative_runtimes.md#using-cri-o) as the container runtime
 
 Join #cri-o on IRC (freenode)
 
 ### Distribution Packaging
 
-* **Fedora**: Available on Fedora 25, 26 and Rawhide
+* **Fedora**: Available on Fedora 25, 26, 27 and Rawhide
 
       dnf install cri-o
 * **Ubuntu**: Available as a [PPA](https://launchpad.net/~projectatomic/+archive/ubuntu/ppa)
+* **Centos**: Available from the [virt-container-common repo](https://cbs.centos.org/repos/virt7-container-common-candidate/x86_64/os/)
 * **RHEL7**: Soon
-* **Centos**: Soon
 
 #### System Container
 
