@@ -128,7 +128,7 @@ You can find us at:
 
 - [GitHub](https://github.com/kubernetes-incubator/cri-o)
 - IRC: FreeNode, #cri-o channel
-- Slack: Kubernetes sig-node
+- Slack: Kubernetes #crio
 
 
 <a class="twitter-timeline"  href="https://twitter.com/hashtag/%22cri-o%22" data-widget-id="862337196434632704">#"cri-o" Tweets</a>
