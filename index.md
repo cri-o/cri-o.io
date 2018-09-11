@@ -58,7 +58,7 @@ It is a lightweight alternative to using Docker, Moby or rkt as the runtime for 
 * {:.contributor} IBM
 
 CRI-O is developed by maintainers and contributors from these companies and others.
-It is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome at the [kubernetes-incubator/cri-o](https://github.com/kubernetes-incubator/cri-o) project.
+It is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome via the [kubernetes-sigs/cri-o](https://github.com/kubernetes-sigs/cri-o) GitHub project.
 
 ## Architecture
 
