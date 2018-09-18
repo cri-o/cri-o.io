@@ -11,6 +11,7 @@ layout: default
 
 * Using `kubeadm`: Use a [systemd drop-in](https://kubernetes.io/docs/reference/generated/kubeadm/#kubelet-drop-in) to configure the CRI-O socket via `--container-runtime-endpoint /var/run/crio/crio.sock"`
 * **Minikube**: Use [CRI-O](https://github.com/kubernetes/minikube/blob/master/docs/alternative_runtimes.md#using-cri-o) as the container runtime
+* **Kubic**: Configured to use CRI-O [out of the box](https://kubic.opensuse.org/blog/2018-09-17-crio-default/) in both its `kubeadm` and `microOS` system roles
 
 Join #cri-o on IRC (freenode)
 
@@ -19,6 +20,9 @@ Join #cri-o on IRC (freenode)
 * **Fedora**: Available on Fedora 25, 26, 27 and Rawhide
 
       dnf install cri-o
+* **openSUSE**: Available on Tumbleweed and [Kubic](https://kubic.opensuse.org) (installed by default on Kubic)
+
+      zypper in cri-o
 * **Ubuntu**: Available as a [PPA](https://launchpad.net/~projectatomic/+archive/ubuntu/ppa)
 * **Centos**: Available from the [virt-container-common repo](https://cbs.centos.org/repos/virt7-container-common-candidate/x86_64/os/)
 * **RHEL7**: Soon
