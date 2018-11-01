@@ -17,7 +17,7 @@ Join #cri-o on IRC (freenode)
 
 ### Distribution Packaging
 
-* **Fedora**: Available on Fedora 25, 26, 27 and Rawhide
+* **Fedora**: Available on all supported Fedora versions 28, 29 and Rawhide. 
 
       dnf install cri-o
 * **openSUSE**: Available on Tumbleweed and [Kubic](https://kubic.opensuse.org) (installed by default on Kubic)
