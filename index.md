@@ -93,7 +93,7 @@ The [containers/storage](https://github.com/containers/storage) library is used 
 and creating root file-systems for the containers in a pod: `Overlayfs`, `devicemapper`, `AUFS` and `btrfs`
 are implemented, with `Overlayfs` as the default driver.
 
-Support for network based file system images (NFS, Gluster, Cefs) is on the development roadmap.
+Support for network based file system images (NFS, GlusterFS, CephFS) is on the development roadmap.
 
 ### Container images
 
