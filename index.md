@@ -37,7 +37,7 @@ CRI-O is an implementation of the Kubernetes CRI (Container Runtime Interface) t
 OCI (Open Container Initiative) compatible runtimes.
 It is a lightweight alternative to using Docker as the runtime for kubernetes.
 It allows Kubernetes to use any OCI-compliant
-runtime as the container runtime for running pods. Today it supports runc and Clear Containers
+runtime as the container runtime for running pods. Today it supports runc and Kata Containers
 as the container runtimes but any OCI-conformant runtime can be plugged in principle.
 
 CRI-O supports OCI container images and can pull from any container registry.
