@@ -63,7 +63,7 @@ The architectural components are as follows:
 
 - Kubernetes contacts the kubelet to launch a pod.
   - Pods are a kubernetes concept consisting of one or more containers sharing the same IPC, NET and PID `namespaces` and living in the same cgroup.
-- The kublet forwards the request to the CRI-O daemon VIA kubernetes CRI (Container runtime interface) to launch the new POD.
+- The kubelet forwards the request to the CRI-O daemon VIA kubernetes CRI (Container runtime interface) to launch the new POD.
 - CRI-O uses the `containers/image` library to pull the image from a container registry.
 - The downloaded image is unpacked into the container's root filesystems, stored in COW file systems, using containers/storage library.
 - After the rootfs has been created for the container, CRI-O generates an OCI runtime specification json file describing how to run the container using the OCI Generate tools.
