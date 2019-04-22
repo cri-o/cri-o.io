@@ -9,8 +9,8 @@ layout: default
 
 ## Try Now
 
-* Using `kubeadm`: Use a [systemd drop-in](https://kubernetes.io/docs/reference/generated/kubeadm/#kubelet-drop-in) to configure the CRI-O socket via `--container-runtime-endpoint /var/run/crio/crio.sock"`
 * **Minikube**: Use [CRI-O](https://github.com/kubernetes/minikube/blob/master/docs/alternative_runtimes.md#using-cri-o) as the container runtime
+* **kubeadm**: Checkout this [kubeadm guide](https://github.com/cri-o/cri-o/blob/master/tutorials/kubeadm.md) to setup `kubeadm` to use CRI-O
 * **Kubic**: Configured to use CRI-O [out of the box](https://kubic.opensuse.org/blog/2018-09-17-crio-default/) in both its `kubeadm` and `microOS` system roles
 
 Join #cri-o on IRC (freenode)
