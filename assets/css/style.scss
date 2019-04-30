@@ -2,3 +2,20 @@
 ---
 
 @import 'jekyll-theme-cayman';
+
+.cncf-section {
+  border-top: 1px solid rgb(233, 235, 236);
+  padding-top: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    font-size: 1rem;
+  }
+
+  &-logo {
+    width: 50%;
+  }
+}
