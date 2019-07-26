@@ -24,7 +24,7 @@ Join #cri-o on IRC (freenode)
 
       zypper in cri-o
 * **Ubuntu**: Available as a [PPA](https://launchpad.net/~projectatomic/+archive/ubuntu/ppa)
-* **Centos**: Available from the [virt-container-common repo](https://cbs.centos.org/repos/virt7-container-common-candidate/x86_64/os/)
+* **Centos**: Available from the [PAAS CRI-O repo](https://cbs.centos.org/repos/paas7-crio-311-candidate/x86_64/os/)
 * **RHEL**: Available with OpenShift
 
 ### CRI-O Running Kubernetes Pods
