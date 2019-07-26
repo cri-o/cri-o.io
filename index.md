@@ -53,7 +53,7 @@ It is a lightweight alternative to using Docker, Moby or rkt as the runtime for 
 * {:.contributor} IBM
 
 CRI-O is developed by maintainers and contributors from these companies and others.
-It is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome via the [kubernetes-sigs/cri-o](https://github.com/kubernetes-sigs/cri-o) GitHub project.
+It is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome via the [crio-o/cri-o](https://github.com/cri-o/cri-o) GitHub project.
 
 ## Architecture
 
@@ -79,7 +79,7 @@ CRI-O is made up of several components that are found in different GitHub reposi
 * [containers/storage](https://github.com/containers/storage)
 * [containers/image](https://github.com/containers/image)
 * [networking (CNI)](https://github.com/containernetworking/cni)
-* [container monitoring (conmon)](https://github.com/kubernetes-incubator/cri-o/tree/master/conmon)
+* [container monitoring (conmon)](https://github.com/cri-o/cri-o/tree/master/conmon)
 * security is provided by several core Linux capabilities
 
 ### OCI compatible runtimes
@@ -108,7 +108,7 @@ Various CNI plugins such as Flannel, Weave and OpenShift-SDN have been tested wi
 
 ### Monitoring
 
-[conmon](https://github.com/kubernetes-incubator/cri-o/tree/master/conmon) is a utility within CRI-O that is used to
+[conmon](https://github.com/cri-o/cri-o/tree/master/conmon) is a utility within CRI-O that is used to
 monitor the containers, handle logging from the container process, serve attach clients and detects Out Of Memory (OOM)
 situations.
 
@@ -121,7 +121,7 @@ and other security separation policies as specified in the OCI Specification.
 
 You can find us at:
 
-- [GitHub](https://github.com/kubernetes-incubator/cri-o)
+- [GitHub](https://github.com/cri-o/cri-o)
 - IRC: FreeNode, #cri-o channel
 - Slack: Kubernetes #crio
 
