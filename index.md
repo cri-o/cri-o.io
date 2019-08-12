@@ -17,9 +17,19 @@ Join #cri-o on IRC (freenode)
 
 ### Distribution Packaging
 
-* **Fedora**: Available on all supported Fedora versions 28, 29 and Rawhide. 
+* **Fedora**: Available on all supported Fedora versions.
+	* Fedora 30 and later
+	```shell
+	VERSION=1.14
+	dnf module enable cri-o:$VERSION
+	dnf install cri-o
+	```
 
-      dnf install cri-o
+	* Fedora 29
+    ```shell
+	dnf install cri-o
+	```
+
 * **openSUSE**: Available on Tumbleweed and [Kubic](https://kubic.opensuse.org) (installed by default on Kubic)
 
       zypper in cri-o
