@@ -79,7 +79,7 @@ CRI-O is made up of several components that are found in different GitHub reposi
 * [containers/storage](https://github.com/containers/storage)
 * [containers/image](https://github.com/containers/image)
 * [networking (CNI)](https://github.com/containernetworking/cni)
-* [container monitoring (conmon)](https://github.com/cri-o/cri-o/tree/master/conmon)
+* [container monitoring (conmon)](https://github.com/containers/conmon)
 * security is provided by several core Linux capabilities
 
 ### OCI compatible runtimes
