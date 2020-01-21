@@ -9,7 +9,7 @@ layout: default
 
 ## Try Now
 
-* **Minikube**: Use [CRI-O](https://github.com/kubernetes/minikube/blob/master/docs/alternative_runtimes.md#using-cri-o) as the container runtime
+* **Minikube**: Use [CRI-O](https://minikube.sigs.k8s.io/docs/reference/runtimes/#cri-o) as the container runtime
 * **kubeadm**: Checkout this [kubeadm guide](https://github.com/cri-o/cri-o/blob/master/tutorials/kubeadm.md) to setup `kubeadm` to use CRI-O
 * **Kubic**: Configured to use CRI-O [out of the box](https://kubic.opensuse.org/blog/2018-09-17-crio-default/) in both its `kubeadm` and `microOS` system roles
 
