@@ -20,7 +20,7 @@ Join #cri-o on IRC (freenode)
 * **Fedora**: Available on all supported Fedora versions.
 	* Fedora 30 and later
 	```shell
-	VERSION=1.14
+	VERSION=1.17
 	dnf module enable cri-o:$VERSION
 	dnf install cri-o
 	```
@@ -33,7 +33,17 @@ Join #cri-o on IRC (freenode)
 * **openSUSE**: Available on Tumbleweed and [Kubic](https://kubic.opensuse.org) (installed by default on Kubic)
 
       zypper in cri-o
-* **Ubuntu**: Available as a [PPA](https://launchpad.net/~projectatomic/+archive/ubuntu/ppa)
+
+* **Ubuntu**: 
+    ```shell
+    CRIO_VERSION=1.17 
+    . /etc/os-release
+    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x${NAME}_${VERSION_ID}/ /' >/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
+    wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x${NAME}_${VERSION_ID}/Release.key -O- | sudo apt-key add -
+    sudo apt-get update -qq
+    sudo apt-get install cri-o-${CRIO_VERSION}
+    ``` 
+
 * **Centos**: Available from the [PAAS CRI-O repo](https://cbs.centos.org/repos/paas7-crio-311-candidate/x86_64/os/)
 * **RHEL**: Available with OpenShift
 
