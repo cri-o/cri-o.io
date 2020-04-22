@@ -19,8 +19,12 @@ Join #cri-o on IRC (freenode)
 
 * **Fedora**: Available on all supported Fedora versions.
 	* Fedora 30 and later
+
+        Before installing CRI-O, it is recommended to list all the versions available for the current distro release.
+        Example:
 	```shell
-	VERSION=1.14
+	dnf module list cri-o
+	VERSION=1.18
 	dnf module enable cri-o:$VERSION
 	dnf install cri-o
 	```
