@@ -19,7 +19,6 @@ Join #cri-o on IRC (freenode)
 
 * **Fedora**: Available on all supported Fedora versions.
 	* Fedora 30 and later
-
         Before installing CRI-O, it is recommended to list all the versions available for the current distro release.
         Example:
 	```shell
@@ -29,28 +28,63 @@ Join #cri-o on IRC (freenode)
 	dnf install cri-o
 	```
 
-	* Fedora 29
-    ```shell
-	dnf install cri-o
-	```
-
 * **openSUSE**: Available on Tumbleweed and [Kubic](https://kubic.opensuse.org) (installed by default on Kubic)
     ```shell 
     zypper in cri-o
     ```
 
-* **Ubuntu**: 
-    ```shell
-    CRIO_VERSION=1.17 
-    . /etc/os-release
-    sudo sh -c "echo 'deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/x${NAME}_${VERSION_ID}/ /' >/etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list"
-    wget -nv https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable/x${NAME}_${VERSION_ID}/Release.key -O- | sudo apt-key add -
-    sudo apt-get update -qq
-    sudo apt-get install cri-o-${CRIO_VERSION}
-    ```
+* **Centos**: Available on the following versions
+
+To install on the following operating systems, set the environment variable `$OS` as the appropriate field in the following table:
+
+| Operating system | $OS               |
+| ---------------- | ----------------- |
+| Centos 8         | `CentOS_8`        |
+| Centos 8 Stream  | `CentOS_8_Stream` |
+| Centos 7         | `CentOS_7`        |
+
+Then, set `$VERSION` to be the cri-o version matching your kubernetes version.
+For instance, if you want to install cri-o 1.17, `VERSION=1.17`
+We also support pinning to a particular release. To install 1.17.3, `VERSION=1.17:1.17.3`
+
+And then run the following as root:
+```shell
+curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/devel:kubic:libcontainers:stable.repo
+curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.repo https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/devel:kubic:libcontainers:stable:cri-o:$VERSION.repo
+yum install cri-o
+```
+
+* **Ubuntu/Debian**: 
+To install on the following operating systems, set the environment variable `$OS` as the appropriate field in the following table:
+
+| Operating system | $OS               |
+| ---------------- | ----------------- |
+| Debian Unstable  | `Debian_Unstable` |
+| Debian Testing   | `Debian_Testing`  |
+| Ubuntu 20.04     | `xUbuntu_20.04`   |
+| Ubuntu 19.10     | `xUbuntu_19.10`   |
+| Ubuntu 19.04     | `xUbuntu_19.04`   |
+| Ubuntu 18.04     | `xUbuntu_18.04`   |
+
+Then, set `$VERSION` to be the cri-o version matching your kubernetes version.
+For instance, if you want to install cri-o 1.17, `VERSION=1.17`
+We also support pinning to a particular release. To install 1.17.3, `VERSION=1.17:1.17.3`
+
+And then run the following as root:
+```shell
+echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
+
+curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key add -
+curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key add -
+
+apt-get update
+apt-get install cri-o cri-o-runc
+```
    
-* **Centos**: Available from the [PAAS CRI-O repo](https://cbs.centos.org/repos/paas7-crio-311-candidate/x86_64/os/)
 * **RHEL**: Available with OpenShift
+
+For more information on installation, visit our [install guide](https://github.com/cri-o/cri-o/blob/master/install.md).
 
 ### CRI-O Running Kubernetes Pods
 
