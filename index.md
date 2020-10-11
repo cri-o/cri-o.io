@@ -167,7 +167,7 @@ Various CNI plugins such as Flannel, Weave and OpenShift-SDN have been tested wi
 
 ### Monitoring
 
-[conmon](https://github.com/cri-o/cri-o/tree/master/conmon) is a utility within CRI-O that is used to
+[conmon](https://github.com/containers/conmon) is a utility within CRI-O that is used to
 monitor the containers, handle logging from the container process, serve attach clients and detects Out Of Memory (OOM)
 situations.
 
