@@ -176,7 +176,7 @@ situations.
 Container security separation policies are provided by a series of tools including SELinux, Capabilities, seccomp,
 and other security separation policies as specified in the OCI Specification.
 
-### Contribute
+## Contribute
 
 You can find us at:
 
@@ -184,6 +184,9 @@ You can find us at:
 - IRC: FreeNode, #cri-o channel
 - Slack: Kubernetes #crio
 
+## Privacy
+
+The CRI-O Project respects your privacy and the security of your personal data.  Check our [privacy policy](/privacy.md).
 
 <a class="twitter-timeline"  href="https://twitter.com/hashtag/%22cri-o%22" data-widget-id="862337196434632704">#"cri-o" Tweets</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
