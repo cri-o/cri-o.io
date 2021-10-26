@@ -68,14 +68,14 @@ To install on the following operating systems, set the environment variable `$OS
 
 Then, set `$VERSION` to be the cri-o version matching your kubernetes version.
 For instance, if you want to install cri-o 1.17, `VERSION=1.17`
-We also support pinning to a particular release. To install 1.17.3, `VERSION=1.17:1.17.3`
+We also support pinning to a particular release. To install 1.17.3, `VERSION=1.17.3`
 
 And then run the following as root:
 ```shell
 echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
-echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
+echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$(echo $VERSION | cut -d. -f1,2):/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
 
-curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$VERSION/$OS/Release.key | apt-key add -
+curl -L https://download.opensuse.org/repositories/devel:kubic:libcontainers:stable:cri-o:$(echo $VERSION | cut -d. -f1,2):$VERSION/$OS/Release.key | apt-key add -
 curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key add -
 
 apt-get update
