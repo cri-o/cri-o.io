@@ -13,7 +13,7 @@ layout: default
 * **kubeadm**: Checkout this [kubeadm guide](https://github.com/cri-o/cri-o/blob/master/tutorials/kubeadm.md) to setup `kubeadm` to use CRI-O
 * **Kubic**: Configured to use CRI-O [out of the box](https://kubic.opensuse.org/blog/2018-09-17-crio-default/) in both its `kubeadm` and `microOS` system roles
 
-Join #cri-o on IRC (freenode)
+Join #crio on [Kubernetes Slack](https://slack.k8s.io/)
 
 ### Distribution Packaging
 
@@ -181,9 +181,7 @@ and other security separation policies as specified in the OCI Specification.
 You can find us at:
 
 - [GitHub](https://github.com/cri-o/cri-o)
-- IRC: FreeNode, #cri-o channel
-- Slack: Kubernetes #crio
-
+- Slack: [Kubernetes](https://slack.k8s.io/) #crio
 
 <a class="twitter-timeline"  href="https://twitter.com/hashtag/%22cri-o%22" data-widget-id="862337196434632704">#"cri-o" Tweets</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
