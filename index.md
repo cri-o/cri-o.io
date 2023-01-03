@@ -112,7 +112,7 @@ It is a lightweight alternative to using Docker, Moby or rkt as the runtime for 
 * {:.contributor} IBM
 
 CRI-O is developed by maintainers and contributors from these companies and others.
-It is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome via the [cri-o/cri-o](https://github.com/cri-o/cri-o) GitHub project.
+It is a community-driven, open source project. Feedback, users, and of course, contributors, are always welcome via the [cri-o/cri-o](https://github.com/cri-o/cri-o) GitHub project. For more guidance on how to contribute, please see the Contribute section below.
 
 ## Architecture
 
@@ -128,7 +128,7 @@ The architectural components are as follows:
 - After the rootfs has been created for the container, CRI-O generates an OCI runtime specification json file describing how to run the container using the OCI Generate tools.
 - CRI-O then launches an OCI Compatible Runtime using the specification to run the container proceses. The default OCI Runtime is runc.
 - Each container is monitored by a separate `conmon` process. The conmon process holds the `pty` of the PID1 of the container process.  It handles logging for the container and records the exit code for the container process.
-- Networking for the pod is setup through use of [CNI](https://github.com/containernetworking/cni), so any CNI plugin can be used with CRI-O.
+- Networking for the pod is set up through use of [CNI](https://github.com/containernetworking/cni), so any CNI plugin can be used with CRI-O.
 
 ## Components
 
@@ -176,12 +176,18 @@ situations.
 Container security separation policies are provided by a series of tools including SELinux, Capabilities, seccomp,
 and other security separation policies as specified in the OCI Specification.
 
-### Contribute
+## Contribute
+
+Join the CRI-O community with other users and contributors - whether you want to ask questions, report issues, submit pull requests, be a reviewer, help with documentation, improve our website, or write a blog post, we always welcome new members. For more guidance on how to contribute, please see the [**contributing guide**](https://github.com/cri-o/cri-o/blob/main/CONTRIBUTING.md).
 
 You can find us at:
 
-- [GitHub](https://github.com/cri-o/cri-o)
-- Slack: [Kubernetes](https://slack.k8s.io/) #crio
+* [**GitHub**](https://github.com/cri-o/cri-o) - For discussions around issues/bugs and features, you can use the GitHub issues and PRs tracking system.
+* **Slack: [Kubernetes](https://slack.k8s.io/) #crio** - For general questions, or discussions, please use our channel on the Kubernetes slack.
+* [**Bi-weekly community meetings**](https://github.com/cri-o/cri-o/wiki/CRI-O-Weekly-Meeting) - A place for CRI-O contributors and stakeholders to chat about the latest and greatest CRI-O work happening, and ask questions.
 
 <a class="twitter-timeline"  href="https://twitter.com/hashtag/%22cri-o%22" data-widget-id="862337196434632704">#"cri-o" Tweets</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+### Other resources
+Learn more about CRI-O from [different articles, videos, podcasts and tutorials](https://github.com/cri-o/cri-o/blob/main/awesome.md) that our community put together. 
