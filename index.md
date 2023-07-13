@@ -59,6 +59,7 @@ To install on the following operating systems, set the environment variable `$OS
 
 | Operating system | $OS               |
 | ---------------- | ----------------- |
+| Debian 12        | `Debian_12`       |
 | Debian 11        | `Debian_11`       |
 | Debian 10        | `Debian_10`       |
 | Ubuntu 20.04     | `xUbuntu_20.04`   |
