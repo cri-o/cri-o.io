@@ -17,8 +17,132 @@ Join #crio on [Kubernetes Slack](https://slack.k8s.io/)
 
 ### Distribution Packaging
 
+#### CRI-O v1.29.0 and later:
+
+**All future CRI-O packages will be shipped as part of the officially supported
+Kubernetes infrastructure hosted on pkgs.k8s.io!**
+
+In the same way as the Kubernetes community, CRI-O provides `deb` and `rpm`
+packages as part of a dedicated subproject in OBS, called
+[`isv:kubernetes:addons:cri-o`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o).
+This project acts as an umbrella and provides `stable` (for CRI-O tags) as well as
+`prerelease` (for CRI-O `release-1.y` and `main` branches) package builds.
+
+**Stable Releases:**
+
+- [`isv:kubernetes:addons:cri-o:stable`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable): Stable Packages
+  - [`isv:kubernetes:addons:cri-o:stable:v1.29`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.29): `v1.29.z` tags
+  - [`isv:kubernetes:addons:cri-o:stable:v1.28`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.28): `v1.28.z` tags
+
+**Prereleases:**
+
+- [`isv:kubernetes:addons:cri-o:prerelease`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease): Prerelease Packages
+  - [`isv:kubernetes:addons:cri-o:prerelease:main`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:main): [`main`](https://github.com/cri-o/cri-o/commits/main) branch
+  - [`isv:kubernetes:addons:cri-o:prerelease:v1.29`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.29): [`release-1.29`](https://github.com/cri-o/cri-o/commits/release-1.29) branch
+  - [`isv:kubernetes:addons:cri-o:prerelease:v1.28`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.28): [`release-1.28`](https://github.com/cri-o/cri-o/commits/release-1.28) branch
+
+#### `rpm` Based Distributions
+
+##### Add the Kubernetes repo
+
+```bash
+cat <<EOF | tee /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key
+EOF
+```
+
+##### Add the CRI-O repo
+
+```bash
+cat <<EOF | tee /etc/yum.repos.d/cri-o.repo
+[cri-o]
+name=CRI-O
+baseurl=https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/rpm/
+enabled=1
+gpgcheck=1
+gpgkey=https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/rpm/repodata/repomd.xml.key
+EOF
+```
+
+##### Install official package dependencies
+
+```bash
+dnf install -y \
+    conntrack \
+    container-selinux \
+    ebtables \
+    ethtool \
+    iptables \
+    socat
+```
+
+##### Install the packages from the added repos
+
+```bash
+dnf install -y --repo cri-o --repo kubernetes \
+    cri-o \
+    kubeadm \
+    kubectl \
+    kubelet
+```
+
+
+#### `deb` Based Distributions
+
+For `deb` based distributions, you can run the following commands as a `root`
+user:
+
+##### Install dependencies for adding the repositories
+
+```bash
+apt-get update
+apt-get install -y software-properties-common curl
+```
+
+##### Add the Kubernetes repository
+
+```bash
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key |
+    gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" |
+    tee /etc/apt/sources.list.d/kubernetes.list
+```
+
+##### Add the CRI-O repository
+
+```bash
+curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/Release.key |
+    gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/ /" |
+    tee /etc/apt/sources.list.d/cri-o.list
+```
+
+##### Install the packages
+
+```bash
+apt-get update
+apt-get install -y cri-o kubelet kubeadm kubectl
+```
+
+
+#### `Fedora`
+Alternatively, the packages are available in the Fedora packaging system.
+As of Fedora 40 and later, CRI-O now only packages one version per version of fedora.
+These correspond to the version of the kubernetes, cri-tools, and golang packages.
+
+```shell
+dnf install cri-o
+```
+
+### CRI-O v1.28.z and lower
+
 * **Fedora**: Available on all supported Fedora versions.
-	* Fedora 30 and later
+	* Fedora 39 and earlier
         Before installing CRI-O, it is recommended to list all the versions available for the current distro release.
         Example:
 	```shell
@@ -27,6 +151,8 @@ Join #crio on [Kubernetes Slack](https://slack.k8s.io/)
 	dnf module enable cri-o:$VERSION
 	dnf install cri-o
 	```
+
+* **RPM Based Distributions **
 
 * **openSUSE**: Available on Tumbleweed and [Kubic](https://kubic.opensuse.org) (installed by default on Kubic)
     ```shell 
