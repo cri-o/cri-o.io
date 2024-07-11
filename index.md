@@ -17,7 +17,7 @@ Join #crio on [Kubernetes Slack](https://slack.k8s.io/)
 
 ### Distribution Packaging
 
-#### CRI-O v1.29.0 and later:
+#### CRI-O v1.28 and later:
 
 **All future CRI-O packages will be shipped as part of the officially supported
 Kubernetes infrastructure hosted on pkgs.k8s.io!**
@@ -28,76 +28,91 @@ packages as part of a dedicated subproject in OBS, called
 This project acts as an umbrella and provides `stable` (for CRI-O tags) as well as
 `prerelease` (for CRI-O `release-1.y` and `main` branches) package builds.
 
-**Stable Releases:**
+#### Stable Versions
 
-- [`isv:kubernetes:addons:cri-o:stable`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable): Stable Packages
+- [`isv:kubernetes:addons:cri-o:stable`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable): Stable Packages (Umbrella)
+  - [`isv:kubernetes:addons:cri-o:stable:v1.31`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.31): `v1.31.z` tags
+  - [`isv:kubernetes:addons:cri-o:stable:v1.30`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.30): `v1.30.z` tags
   - [`isv:kubernetes:addons:cri-o:stable:v1.29`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.29): `v1.29.z` tags
   - [`isv:kubernetes:addons:cri-o:stable:v1.28`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.28): `v1.28.z` tags
 
-**Prereleases:**
+#### Prereleases
 
-- [`isv:kubernetes:addons:cri-o:prerelease`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease): Prerelease Packages
+- [`isv:kubernetes:addons:cri-o:prerelease`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease): Prerelease Packages (Umbrella)
   - [`isv:kubernetes:addons:cri-o:prerelease:main`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:main): [`main`](https://github.com/cri-o/cri-o/commits/main) branch
+  - [`isv:kubernetes:addons:cri-o:prerelease:v1.31`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.31): [`release-1.31`](https://github.com/cri-o/cri-o/commits/release-1.31) branch
+  - [`isv:kubernetes:addons:cri-o:prerelease:v1.30`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.30): [`release-1.30`](https://github.com/cri-o/cri-o/commits/release-1.30) branch
   - [`isv:kubernetes:addons:cri-o:prerelease:v1.29`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.29): [`release-1.29`](https://github.com/cri-o/cri-o/commits/release-1.29) branch
   - [`isv:kubernetes:addons:cri-o:prerelease:v1.28`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.28): [`release-1.28`](https://github.com/cri-o/cri-o/commits/release-1.28) branch
 
-#### `rpm` Based Distributions
+All packages are based on the static binary bundles provided by the CRI-O CI.
 
-##### Add the Kubernetes repo
+#### Define the Kubernetes version and used CRI-O stream
+
+```bash
+KUBERNETES_VERSION=v1.30
+CRIO_VERSION=v1.30
+```
+
+#### Distributions using `rpm` packages
+
+##### Add the Kubernetes repository
 
 ```bash
 cat <<EOF | tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
-baseurl=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/
+baseurl=https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/rpm/
 enabled=1
 gpgcheck=1
-gpgkey=https://pkgs.k8s.io/core:/stable:/v1.28/rpm/repodata/repomd.xml.key
+gpgkey=https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/rpm/repodata/repomd.xml.key
 EOF
 ```
 
-##### Add the CRI-O repo
+##### Add the CRI-O repository
 
 ```bash
 cat <<EOF | tee /etc/yum.repos.d/cri-o.repo
 [cri-o]
 name=CRI-O
-baseurl=https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/rpm/
+baseurl=https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/rpm/
 enabled=1
 gpgcheck=1
-gpgkey=https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/rpm/repodata/repomd.xml.key
+gpgkey=https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/rpm/repodata/repomd.xml.key
 EOF
 ```
 
-##### Install official package dependencies
+##### Install package dependencies from the official repositories
 
 ```bash
-dnf install -y \
-    conntrack \
-    container-selinux \
-    ebtables \
-    ethtool \
-    iptables \
-    socat
+dnf install -y container-selinux
 ```
 
-##### Install the packages from the added repos
+##### Install the packages
 
 ```bash
-dnf install -y --repo cri-o --repo kubernetes \
-    cri-o \
-    kubeadm \
-    kubectl \
-    kubelet
+dnf install -y cri-o kubelet kubeadm kubectl
 ```
 
+##### Start CRI-O
 
-#### `deb` Based Distributions
+```bash
+systemctl start crio.service
+```
 
-For `deb` based distributions, you can run the following commands as a `root`
-user:
+##### Bootstrap a cluster
 
-##### Install dependencies for adding the repositories
+```bash
+swapoff -a
+modprobe br_netfilter
+sysctl -w net.ipv4.ip_forward=1
+
+kubeadm init
+```
+
+#### Distributions using `deb` packages
+
+##### Install the dependencies for adding repositories
 
 ```bash
 apt-get update
@@ -107,18 +122,20 @@ apt-get install -y software-properties-common curl
 ##### Add the Kubernetes repository
 
 ```bash
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key |
+curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" |
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" |
     tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
 ##### Add the CRI-O repository
 
 ```bash
-curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/Release.key |
+curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
-echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/ /" |
+
+echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/ /" |
     tee /etc/apt/sources.list.d/cri-o.list
 ```
 
@@ -129,6 +146,21 @@ apt-get update
 apt-get install -y cri-o kubelet kubeadm kubectl
 ```
 
+##### Start CRI-O
+
+```bash
+systemctl start crio.service
+```
+
+##### Bootstrap a cluster
+
+```bash
+swapoff -a
+modprobe br_netfilter
+sysctl -w net.ipv4.ip_forward=1
+
+kubeadm init
+```
 
 #### `Fedora`
 Alternatively, the packages are available in the Fedora packaging system.
@@ -138,78 +170,6 @@ These correspond to the version of the kubernetes, cri-tools, and golang package
 ```shell
 dnf install cri-o
 ```
-
-### CRI-O v1.28.z and lower
-
-* **Fedora**: Available on all supported Fedora versions.
-	* Fedora 39 and earlier
-        Before installing CRI-O, it is recommended to list all the versions available for the current distro release.
-        Example:
-	```shell
-	dnf module list cri-o
-	VERSION=1.18
-	dnf module enable cri-o:$VERSION
-	dnf install cri-o
-	```
-
-* **RPM Based Distributions **
-
-* **openSUSE**: Available on Tumbleweed and [Kubic](https://kubic.opensuse.org) (installed by default on Kubic)
-    ```shell 
-    zypper in cri-o
-    ```
-
-* **Centos**: Available on the following versions
-
-To install on the following operating systems, set the environment variable `$OS` as the appropriate field in the following table:
-
-| Operating system | $OS               |
-| ---------------- | ----------------- |
-| Centos 8         | `CentOS_8`        |
-| Centos 8 Stream  | `CentOS_8_Stream` |
-| Centos 7         | `CentOS_7`        |
-
-Then, set `$VERSION` to be the cri-o version matching your kubernetes version.
-For instance, if you want to install cri-o 1.17, `VERSION=1.17`
-We also support pinning to a particular release. To install 1.17.3, `VERSION=1.17:1.17.3`
-
-And then run the following as root:
-```shell
-curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/devel:/kubic:/libcontainers:/stable.repo
-curl -L -o /etc/yum.repos.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.repo https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/devel:kubic:libcontainers:stable:cri-o:$VERSION.repo
-yum install cri-o
-```
-
-* **Ubuntu/Debian**: 
-To install on the following operating systems, set the environment variable `$OS` as the appropriate field in the following table:
-
-| Operating system | $OS               |
-| ---------------- | ----------------- |
-| Debian 12        | `Debian_12`       |
-| Debian 11        | `Debian_11`       |
-| Debian 10        | `Debian_10`       |
-| Ubuntu 20.04     | `xUbuntu_20.04`   |
-| Ubuntu 19.10     | `xUbuntu_19.10`   |
-| Ubuntu 19.04     | `xUbuntu_19.04`   |
-| Ubuntu 18.04     | `xUbuntu_18.04`   |
-
-Then, set `$VERSION` to be the cri-o version matching your kubernetes version.
-For instance, if you want to install cri-o 1.17, `VERSION=1.17`
-We also support pinning to a particular release. To install 1.17.3, `VERSION=1.17:1.17.3`
-
-And then run the following as root:
-```shell
-echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
-echo "deb http://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/ /" > /etc/apt/sources.list.d/devel:kubic:libcontainers:stable:cri-o:$VERSION.list
-
-curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable:/cri-o:/$VERSION/$OS/Release.key | apt-key add -
-curl -L https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/$OS/Release.key | apt-key add -
-
-apt-get update
-apt-get install cri-o cri-o-runc
-```
-   
-* **RHEL**: Available with OpenShift
 
 For more information on installation, visit our [install guide](https://github.com/cri-o/cri-o/blob/master/install.md).
 
