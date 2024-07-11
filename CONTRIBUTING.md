@@ -11,6 +11,7 @@ Please note that this project is released with a [Contributor Code of Conduct][c
 0. Make sure the tests pass on your machine: `script/cibuild`
 0. Create a new branch: `git checkout -b my-branch-name`
 0. Make your change, add tests, and make sure the tests still pass
+0. Sign all your commits: `git commit -s`(for additional info about the sign-off, check out [the upstream documentation](https://github.com/cri-o/cri-o/blob/main/CONTRIBUTING.md#sign-your-prs))
 0. Push to your fork and [submit a pull request][pr]
 0. Pat your self on the back and wait for your pull request to be reviewed and merged.
 
