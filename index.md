@@ -17,41 +17,29 @@ Join #crio on [Kubernetes Slack](https://slack.k8s.io/)
 
 ### Distribution Packaging
 
-#### CRI-O v1.28 and later:
+## Project Layout
 
-**All future CRI-O packages will be shipped as part of the officially supported
-Kubernetes infrastructure hosted on pkgs.k8s.io!**
+CRI-O uses the same basic layout in OBS as Kubernetes project [`isv:kubernetes`](https://build.opensuse.org/project/show/isv:kubernetes),
+but lives in a dedicated umbrella project called [`isv:cri-o`](https://build.opensuse.org/project/show/isv:cri-o).
 
-In the same way as the Kubernetes community, CRI-O provides `deb` and `rpm`
-packages as part of a dedicated subproject in OBS, called
-[`isv:kubernetes:addons:cri-o`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o).
-This project acts as an umbrella and provides `stable` (for CRI-O tags) as well as
-`prerelease` (for CRI-O `release-1.y` and `main` branches) package builds.
+This project contains a bunch of other [subprojects](https://build.opensuse.org/project/subprojects/isv:cri-o).
 
-#### Stable Versions
+### Important Notice
 
-- [`isv:kubernetes:addons:cri-o:stable`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable): Stable Packages (Umbrella)
-  - [`isv:kubernetes:addons:cri-o:stable:v1.31`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.31): `v1.31.z` tags
-  - [`isv:kubernetes:addons:cri-o:stable:v1.30`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.30): `v1.30.z` tags
-  - [`isv:kubernetes:addons:cri-o:stable:v1.29`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.29): `v1.29.z` tags
-  - [`isv:kubernetes:addons:cri-o:stable:v1.28`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:stable:v1.28): `v1.28.z` tags
+We switched from `https://pkgs.k8s.io/addons:/cri-o` to a new subproject
+`https://download.opensuse.org/repositories/isv:/cri-o` to work independently
+from the pkgs.k8s.io CDN. Please switch over if you haven't already (see the examples below).
 
-#### Prereleases
-
-- [`isv:kubernetes:addons:cri-o:prerelease`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease): Prerelease Packages (Umbrella)
-  - [`isv:kubernetes:addons:cri-o:prerelease:main`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:main): [`main`](https://github.com/cri-o/cri-o/commits/main) branch
-  - [`isv:kubernetes:addons:cri-o:prerelease:v1.31`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.31): [`release-1.31`](https://github.com/cri-o/cri-o/commits/release-1.31) branch
-  - [`isv:kubernetes:addons:cri-o:prerelease:v1.30`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.30): [`release-1.30`](https://github.com/cri-o/cri-o/commits/release-1.30) branch
-  - [`isv:kubernetes:addons:cri-o:prerelease:v1.29`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.29): [`release-1.29`](https://github.com/cri-o/cri-o/commits/release-1.29) branch
-  - [`isv:kubernetes:addons:cri-o:prerelease:v1.28`](https://build.opensuse.org/project/show/isv:kubernetes:addons:cri-o:prerelease:v1.28): [`release-1.28`](https://github.com/cri-o/cri-o/commits/release-1.28) branch
+- [Stable Versions](https://github.com/cri-o/packaging?tab=readme-ov-file#stable-versions) 
+- [Prereleases](https://github.com/cri-o/packaging?tab=readme-ov-file#prereleases)
 
 All packages are based on the static binary bundles provided by the CRI-O CI.
 
 #### Define the Kubernetes version and used CRI-O stream
 
 ```bash
-KUBERNETES_VERSION=v1.30
-CRIO_VERSION=v1.30
+KUBERNETES_VERSION=v1.32
+CRIO_VERSION=v1.32
 ```
 
 #### Distributions using `rpm` packages
@@ -75,10 +63,10 @@ EOF
 cat <<EOF | tee /etc/yum.repos.d/cri-o.repo
 [cri-o]
 name=CRI-O
-baseurl=https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/rpm/
+baseurl=https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/rpm/
 enabled=1
 gpgcheck=1
-gpgkey=https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/rpm/repodata/repomd.xml.key
+gpgkey=https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/rpm/repodata/repomd.xml.key
 EOF
 ```
 
@@ -132,10 +120,10 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.
 ##### Add the CRI-O repository
 
 ```bash
-curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
+curl -fsSL https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
 
-echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/ /" |
+echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$CRIO_VERSION/deb/ /" |
     tee /etc/apt/sources.list.d/cri-o.list
 ```
 
