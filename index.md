@@ -201,7 +201,7 @@ The architectural components are as follows:
 - CRI-O uses the `containers/image` library to pull the image from a container registry.
 - The downloaded image is unpacked into the container's root filesystems, stored in COW file systems, using containers/storage library.
 - After the rootfs has been created for the container, CRI-O generates an OCI runtime specification json file describing how to run the container using the OCI Generate tools.
-- CRI-O then launches an OCI Compatible Runtime using the specification to run the container proceses. The default OCI Runtime is runc.
+- CRI-O then launches an OCI Compatible Runtime using the specification to run the container processes. The default OCI Runtime is runc.
 - Each container is monitored by a separate `conmon` process. The conmon process holds the `pty` of the PID1 of the container process.  It handles logging for the container and records the exit code for the container process.
 - Networking for the pod is setup through use of [CNI](https://github.com/containernetworking/cni), so any CNI plugin can be used with CRI-O.
 
